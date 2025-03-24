@@ -3,14 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Advanced search</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <body>
-      <form action="https://www.google.com/search">
-        <input type="text" name="q" />
-        <input type="submit" value="Google Search" />
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Google search</a></li>
+      </ul>
+    </nav>
+    <main>
+      <div id="logo"><h1><a href="https://www.google.com/">Google</h1></a></div>
+      <div><h2>Find pages with...</h2></div>
+      <form id="forma" action="https://www.google.com/search">
+        <div class="search_bar">
+          <p>all these words:</p>
+          <input type="text" name="as_q" />
+        </div>
+        <div class="search_bar">
+          <p>this exact word or phrase:</p>
+          <input type="text" name="as_epq" />
+        </div>
+        <div class="search_bar">
+          <p>any of these words:</p>
+          <input type="text" name="as_oq" />
+        </div>
+        <div class="search_bar">
+          <p>none of these words:</p>
+          <input type="text" name="as_eq" />
+        </div>
+        <div id="advanced_search_button">
+          <div id="search_button">
+            <input type="submit" value="Advanced Search" />
+          </div>
+        </div>
       </form>
-    </body>
+    </main>
   </body>
 </html>
