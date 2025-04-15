@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+    <title>{% block title %}Auctions: {% endblock title %}</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url "auctions:index" %}">Auction store</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url "auctions:index" %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+            {% if request.user.is_authenticated %}
+            <li class="nav-item ">
+                <a class="nav-link" href="#">Active Listings <span class="sr-only">(current)</span></a>
+            </li>
+              
+            <li class="nav-item ">
+                <a class="nav-link" href="#">Categories <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="#">Watchlist <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="#">Create Listing <span class="sr-only">(current)</span></a>
+            </li>
+
+            {% endif %}
+
+
+        </ul>
+          <span class="form-inline my-2 my-lg-0">
+            {% if request.user.is_authenticated %}
+                <div class="pr-2 text-white">
+                Signed in as {{ request.user.first_name|default:request.user.username }} 
+                </div>
+                <form action="{% url "auctions:logout" %}" method="post" >
+                    <button type="submit" class="btn btn-primary">Logout</button>
+                    {% csrf_token %}
+                </form>
+            {% else %}
+                <div class="pr-2">
+                <a type="button" class="btn btn-primary" href="{% url "auctions:register" %}">Register</a>
+                </div>
+                <a type="button" class="btn btn-primary" href="{% url "auctions:login" %}">Log-in</a>
+            {% endif %}
+          </span>
+        </div>
+      </nav>
+    <main>
+    {% block body %}
+    {% endblock %}
+    </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

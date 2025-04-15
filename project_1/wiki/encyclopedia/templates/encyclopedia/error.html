@@ -1,0 +1,11 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ entry_name }}
+{% endblock %}
+
+{% block body %}
+    <h1>Error!</h1>
+    <h2>Requested page <span style="color: red;">{{ entry_name}}</span> was not found.</h2>
+
+{% endblock %}

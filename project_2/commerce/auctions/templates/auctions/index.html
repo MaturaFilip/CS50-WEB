@@ -1,0 +1,14 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    {% if request.user.is_authenticated %}
+        <h2>Welcome {{ request.user.first_name|default:request.user.username }} to auctions!</h2>
+
+        TODO
+    {% else %}
+        <h2>Welcome to our auctions website!</h2>
+        <h4>Log-in to continue</h4>
+    {% endif %}
+
+{% endblock body %}
