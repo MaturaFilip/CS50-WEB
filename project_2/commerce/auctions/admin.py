@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Auction, Bid, Comment
+from .models import Auction, Bid, Comment, Profile
 # Register your models here.
 
 @admin.register(Auction)
@@ -23,3 +23,7 @@ class CommentAdmin(admin.ModelAdmin):
     date_hierarchy = "created"
     ordering = ["created"]
 
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ["user", "date_of_birth"]
+    raw_id_fields = ["user"]

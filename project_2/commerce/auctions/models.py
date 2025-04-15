@@ -29,7 +29,7 @@ class Auction(models.Model):
         related_name = "user_auctions"
     )
     body = models.TextField()
-    figure_url = models.CharField(max_length=250, null=True)
+    figure_url = models.CharField(max_length=250, blank=True, null=True)
     start_bid = models.PositiveIntegerField()
     # created / updated
     created = models.DateTimeField(auto_now_add=True)
@@ -116,6 +116,7 @@ class Comment(models.Model):
 #############
 #USER EXTEND#
 #############
+
 class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,

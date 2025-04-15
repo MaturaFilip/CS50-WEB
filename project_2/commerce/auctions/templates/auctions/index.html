@@ -3,9 +3,29 @@
 {% block body %}
 
     {% if request.user.is_authenticated %}
-        <h2>Welcome {{ request.user.first_name|default:request.user.username }} to auctions!</h2>
+        <h2 class="text-center">Welcome {{ request.user.first_name|default:request.user.username }} to auctions!</h2>
+        
+        <h3 class="text-center">Newest auctions:</h3>
+        <div class="container" style="max-width: 800px;">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Created</th>
+                <th scope="col">Description</th>
+            </tr>
+            </thead>
 
-        TODO
+        {% for auction in auctions  %}
+            <tr onclick="window.location='#'" style="cursor: pointer;">
+            <td>{{ auction.title }}</td>
+            <td>{{ auction.created }} by {{ auction.author }}</td>
+            <td>{{ auction.body|truncatewords:2 }}</td>
+            </tr>
+
+        {% endfor %}
+        </table>
+        </div>
     {% else %}
         <h2>Welcome to our auctions website!</h2>
         <h4>Log-in to continue</h4>
